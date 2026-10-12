@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self'; style-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'">
+<title>Privacy policy — Framelet</title>
+<meta name="description" content="How Framelet handles your screenshots and data: everything stays on your Mac, no account, no analytics; the only network request is the update check.">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css">
+<link rel="alternate" hreflang="zh-Hans" href="../privacy.html">
+<link rel="alternate" hreflang="en" href="privacy.html">
+<script src="../config.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7V3.5h3.5M13.5 3.5H17V7M17 13v3.5h-3.5M6.5 16.5H3V13" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="10" r="2" fill="currentColor"/></svg>Framelet</a>
+    <nav class="site-nav" aria-label="Site">
+      <a href="index.html">Overview</a>
+      <a href="privacy.html" aria-current="page">Privacy</a>
+      <a href="automation.html">URL automation</a>
+      <a href="changelog.html">Changelog</a>
+      <a class="lang" href="../privacy.html" lang="zh-Hans" hreflang="zh-Hans">中文</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="doc">
+  <div class="wrap narrow">
+    <header class="page-head">
+      <div class="eyebrow"><span class="readout">Updated <time datetime="2026-10-06">2026-10-06</time></span></div>
+      <h1>Privacy policy</h1>
+      <p>What the Framelet app reads, where it keeps things, and whether it goes online. This describes what the app actually does; it is not legal boilerplate.</p>
+    </header>
+
+    <div class="plate">
+      <ul>
+        <li>Captures, annotations, recognized text and history are stored on your Mac and never uploaded.</li>
+        <li>No account, no analytics, no usage data collected.</li>
+        <li>The only network request is the update check, which reads the update feed from GitHub.</li>
+        <li>Crash and hang reports stay on your Mac and are never sent automatically.</li>
+      </ul>
+    </div>
+
+    <ul class="toc" aria-label="On this page">
+      <li><a href="#data">Where your data lives</a></li>
+      <li><a href="#network">Network</a></li>
+      <li><a href="#permissions">Permissions</a></li>
+      <li><a href="#diagnostics">Diagnostics</a></li>
+      <li><a href="#delete">Deleting data</a></li>
+      <li><a href="#website">This website</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <h2 id="data">Where your data lives</h2>
+    <p>Everything Framelet keeps is in your user folder:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>What</th><th>Where</th></tr></thead>
+        <tbody>
+          <tr><td>Captures, editable annotation records, recognized text (for History search)</td><td><code>~/Library/Application Support/Framelet/Library</code></td></tr>
+          <tr><td>Screen recordings (experimental)</td><td><code>~/Library/Application Support/Framelet/Recordings</code></td></tr>
+          <tr><td>Crash and hang reports</td><td><code>~/Library/Application Support/Framelet/Diagnostics</code></td></tr>
+          <tr><td>Auto-saved images (changeable in Settings)</td><td><code>~/Pictures/Framelet</code></td></tr>
+          <tr><td>Settings</td><td>The app's macOS preferences</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Text recognition uses Apple's Vision framework and runs on your Mac. Framelet has no built-in AI service and no cloud storage.</p>
+    <p>Copying puts the image or text on the system clipboard, like copying in any other app.</p>
+    <p>Redactions are burned into images when you copy or save, so exported images don't contain the covered content. The library on your Mac still keeps the unredacted original so you can edit again — keep that in mind if you back up or share the library folder.</p>
+
+    <h2 id="network">Network</h2>
+    <p>Framelet has no account, no analytics, and no third-party SDKs except Sparkle, which handles updates.</p>
+    <p><strong>The only network request is the update check.</strong> Whether it happens automatically is up to you: Sparkle asks once, you can change it later in Settings › About, or only use Check for Updates… when you want. It fetches the update feed (appcast) from GitHub:</p>
+    <pre><code data-text="APPCAST_URL">https://robeshell.github.io/framelet-releases/appcast.xml</code></pre>
+    <p>Sparkle's system profiling is turned off, so no hardware or system profile is sent. As with any HTTPS request, GitHub sees your IP address and a User-Agent containing the app's name and version. GitHub's privacy statement covers how GitHub handles that.</p>
+    <p>Captures, annotations, text and history are never part of this request, or of any other.</p>
+    <p>When a QR code is recognized, the text panel can open its link. That happens only when you click Open, and it is handed to your browser; Framelet doesn't fetch it itself.</p>
+
+    <h2 id="permissions">Permissions</h2>
+    <p>You can revoke any of these at any time in System Settings › Privacy &amp; Security.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Permission</th><th>When it is used</th></tr></thead>
+        <tbody>
+          <tr><td>Screen &amp; System Audio Recording</td><td>Required for capturing. Screen contents are read only when you press a capture shortcut or start a capture. Framelet checks at launch, on the welcome screen and in Settings whether the permission is still granted; the check itself doesn't read the screen.</td></tr>
+          <tr><td>Microphone</td><td>Requested and used only if you turn on the microphone for experimental screen recording.</td></tr>
+          <tr><td>Accessibility</td><td>Used only for “Scroll Automatically” in experimental Scrolling Capture, and requested only when you click it. Without it you can still scroll by hand and capture frames.</td></tr>
+          <tr><td>Input Monitoring</td><td>Used only for the click and shortcut overlays in experimental screen recording. The shortcut overlay records only combinations with <kbd>⌘</kbd> / <kbd>⌃</kbd> / <kbd>⌥</kbd> and function keys, never ordinary typing.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Global capture shortcuts need neither Input Monitoring nor Accessibility.</p>
+
+    <h2 id="diagnostics">Diagnostics</h2>
+    <p>Crash and hang reports that macOS provides through MetricKit are kept only on your Mac and are never sent automatically.</p>
+    <p>If something goes wrong, you can export a diagnostics file from Settings › About and decide for yourself whether to send it to us. The file contains no screenshots and no text recognized from screenshots.</p>
+
+    <h2 id="delete">Deleting data</h2>
+    <ul>
+      <li>Captures you delete in History (the current image and the original) go to the Trash and can be recovered until you empty it. On a volume without a Trash they are deleted directly.</li>
+      <li>History cleaned up by the retention rule is deleted permanently, without going through the Trash. The rule defaults to 30 days and at most 500 captures and runs at launch; “Clean Up History…” in Settings › Output applies it immediately.</li>
+      <li>To remove everything: quit Framelet, delete the app, then delete <code>~/Library/Application Support/Framelet</code> and any images in <code>~/Pictures/Framelet</code> you no longer want.</li>
+    </ul>
+
+    <h2 id="website">This website</h2>
+    <p>This site is a set of static pages hosted on GitHub Pages. It uses no cookies, no analytics scripts, and loads no external fonts or resources. As the host, GitHub processes access logs.</p>
+
+    <h2 id="contact">Contact</h2>
+    <p>For privacy questions, open an issue on <a data-link="SUPPORT_URL" href="https://github.com/robeshell/framelet-releases/issues">GitHub Issues</a>.</p>
+    <p class="fine">When this policy changes, the date at the top of this page changes with it.</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Framelet · This site uses no cookies and no analytics.</span>
+    <nav aria-label="Footer">
+      <a href="index.html">Overview</a>
+      <a href="automation.html">URL automation</a>
+      <a href="changelog.html">Changelog</a>
+      <a data-link="REPO_URL" href="https://github.com/robeshell/framelet-releases">GitHub</a>
+      <a href="../privacy.html" lang="zh-Hans" hreflang="zh-Hans">中文</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

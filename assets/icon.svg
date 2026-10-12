@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <title>Framelet app icon — 32 pt hinted render</title>
+  <!-- Hinted for 32 pt: thicker corners on whole-pixel positions, keyline reduced to 1 pt, no rim gradient. -->
+  <defs><linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2C2D31"/><stop offset="1" stop-color="#121315"/></linearGradient></defs>
+  <rect x="3" y="3" width="26" height="26" rx="5.9" fill="url(#b)"/>
+  <rect x="3.25" y="3.25" width="25.5" height="25.5" rx="5.65" fill="none" stroke="#FFFFFF" stroke-opacity=".14" stroke-width=".5"/>
+  <path d="M8 12V8h4M20 8h4v4M24 20v4h-4M12 24H8v-4" fill="none" stroke="#F2E8D5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <g stroke="#F2E8D5" fill="#F2E8D5" stroke-linejoin="round">
+    <path d="M12.5 19.5L15.6 16.4" stroke-width="3.6" fill="none"/>
+    <path d="M19 13L17.2 17.6L14.4 14.8Z" stroke-width="2"/>
+    <path d="M11.4 18.4H13.6V20.6H11.4Z" stroke-width="2"/>
+  </g>
+  <g fill="#FF5A1F">
+    <path d="M12.5 19.5L15.8 16.2" stroke="#FF5A1F" stroke-width="1.6" fill="none"/>
+    <path d="M19 13L17.2 17.6L14.4 14.8Z"/>
+    <path d="M11.4 18.4H13.6V20.6H11.4Z"/>
+  </g>
+</svg>

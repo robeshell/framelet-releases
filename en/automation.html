@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self'; style-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'">
+<title>URL automation — Framelet</title>
+<meta name="description" content="Start a capture from Shortcuts, Terminal or a launcher with framelet://capture links: capture modes, delay, App Rules and parameter validation.">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css">
+<link rel="alternate" hreflang="zh-Hans" href="../automation.html">
+<link rel="alternate" hreflang="en" href="automation.html">
+<script src="../config.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7V3.5h3.5M13.5 3.5H17V7M17 13v3.5h-3.5M6.5 16.5H3V13" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="10" r="2" fill="currentColor"/></svg>Framelet</a>
+    <nav class="site-nav" aria-label="Site">
+      <a href="index.html">Overview</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="automation.html" aria-current="page">URL automation</a>
+      <a href="changelog.html">Changelog</a>
+      <a class="lang" href="../automation.html" lang="zh-Hans" hreflang="zh-Hans">中文</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="doc">
+  <div class="wrap narrow">
+    <header class="page-head">
+      <div class="eyebrow"><span class="readout">framelet://capture</span></div>
+      <h1>URL automation</h1>
+      <p>Opening a <code>framelet://</code> link starts a capture. Open it from Shortcuts, Terminal, Raycast or Alfred, or from a script. Settings › About has an example you can copy.</p>
+    </header>
+
+    <ul class="toc" aria-label="On this page">
+      <li><a href="#format">Format</a></li>
+      <li><a href="#mode">mode</a></li>
+      <li><a href="#delay">delay</a></li>
+      <li><a href="#preset">preset</a></li>
+      <li><a href="#validation">Validation</a></li>
+      <li><a href="#examples">Examples</a></li>
+      <li><a href="#cli">Command line</a></li>
+      <li><a href="#notes">Requirements</a></li>
+    </ul>
+
+    <h2 id="format">Format</h2>
+    <pre><code>framelet://capture?mode=&lt;mode&gt;&amp;delay=&lt;seconds&gt;&amp;preset=&lt;name&gt;</code></pre>
+    <p>All three parameters are optional and can come in any order. Without <code>mode</code>, the link captures a <code>region</code>, so <code>framelet://capture</code> on its own is an area capture.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Parameter</th><th>Value</th><th>When omitted</th></tr></thead>
+        <tbody>
+          <tr><td><code>mode</code></td><td>One of the 9 modes below</td><td><code>region</code></td></tr>
+          <tr><td><code>delay</code></td><td>Whole seconds from 0 to 60</td><td>The delay in Settings › Capture</td></tr>
+          <tr><td><code>preset</code></td><td>The name of an App Rule or a legacy preset</td><td>App Rules are matched to the frontmost app</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Parameters in a link apply to that one capture only; they never change your settings.</p>
+
+    <h2 id="mode">mode</h2>
+    <p>Values are case-sensitive and must be written in lowercase, exactly as below.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th><code>mode</code></th><th>Menu name</th><th>What happens</th></tr></thead>
+        <tbody>
+          <tr><td><code>region</code></td><td>Capture Area</td><td>Freezes the screen for you to select. Press Space during selection to switch to window mode.</td></tr>
+          <tr><td><code>window</code></td><td>Capture Window</td><td>Opens the window list. Search by app or window name, choose with <kbd>↑</kbd><kbd>↓</kbd>, capture with <kbd>↩</kbd>. The delay starts after you pick the window.</td></tr>
+          <tr><td><code>screen</code></td><td>Capture Full Screen</td><td>Captures the screen under the pointer.</td></tr>
+          <tr><td><code>all</code></td><td>Capture All Screens</td><td>One image per display. The last one follows your After Capture setting; the others go to Quick Access.</td></tr>
+          <tr><td><code>repeat</code></td><td>Repeat Last Area</td><td>Captures the previous area again without showing the selection layer. If there is no previous area yet: “There’s no last area yet. Capture an area first.”</td></tr>
+          <tr><td><code>multi</code></td><td>Capture Multiple Areas</td><td>Add areas with <kbd>Tab</kbd>, finish with <kbd>↩</kbd>. The last area follows your After Capture setting; the others go to Quick Access.</td></tr>
+          <tr><td><code>scroll</code></td><td>Scrolling Capture (experimental)</td><td>After you select an area, a panel lets you capture frame by frame or Scroll Automatically (needs Accessibility). When you finish, overlaps are detected and stitched into one long image.</td></tr>
+          <tr><td><code>burst</code></td><td>Burst</td><td>Takes 5 frames about 500 ms apart; the count and interval are fixed. Each frame is saved separately and goes to Quick Access.</td></tr>
+          <tr><td><code>text</code></td><td>Recognize Text</td><td>Select an area; its text and any QR code contents are copied to the clipboard. The capture isn't saved to History and no annotation layer opens. If nothing is recognized, a failure notice appears.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 id="delay">delay</h2>
+    <p>A whole number of seconds from 0 to 60, digits only: <code>3</code> works; <code>3.5</code>, <code>-1</code>, <code>61</code> and <code>3s</code> are rejected. <code>delay=0</code> means no delay for this capture, even if Settings has one.</p>
+    <p>The countdown appears below the menu bar on the screen under the pointer; click Cancel to stop it. The countdown itself never ends up in the capture. Settings only offers Off / 3 / 5 / 10 seconds; a link can use any whole number from 0 to 60.</p>
+
+    <h2 id="preset">preset</h2>
+    <p>Chooses which output settings (After Capture action, format, scale, save location and annotation color) this capture uses, instead of matching the frontmost app. Names are looked up in this order:</p>
+    <ol>
+      <li><strong>App Rules</strong> (Settings › App Rules). A rule's name is the app name recorded when the rule was added, such as <code>Safari</code>; if no app name was recorded, it is the bundle ID.</li>
+      <li><strong>Legacy presets.</strong> Scene presets from before 0.4.0 were migrated on upgrade: presets bound to an app became App Rules, and the rest no longer appear in Settings but still work here by their old name.</li>
+    </ol>
+    <p>The name must match exactly and is case-sensitive; leading and trailing spaces are ignored. If nothing matches, Framelet shows “Couldn't find the preset “name”.” and doesn't capture.</p>
+    <p>Percent-encode names that contain spaces, non-ASCII characters or symbols such as <code>&amp;</code>. Write a space as <code>%20</code>, not <code>+</code>:</p>
+    <pre><code>framelet://capture?mode=region&amp;preset=Google%20Chrome</code></pre>
+
+    <h2 id="validation">Validation</h2>
+    <p>Framelet checks the whole link first. If anything is wrong it doesn't capture, and shows a notice that doesn't interrupt what you're doing:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Problem</th><th>Message</th></tr></thead>
+        <tbody>
+          <tr><td>Not <code>framelet://capture</code>, or has a path, port, user name or <code>#</code> fragment</td><td>Invalid Framelet action link. Use framelet://capture?mode=region.</td></tr>
+          <tr><td>Unknown parameter (names are case-sensitive, so <code>Mode</code> is unknown too)</td><td>Unknown action parameter: <em>name</em>.</td></tr>
+          <tr><td>The same parameter twice</td><td>Action parameter can't be repeated: <em>name</em>.</td></tr>
+          <tr><td>A parameter with no value, an empty value or only spaces, e.g. <code>delay=</code></td><td>Action parameter can't be empty: <em>name</em>.</td></tr>
+          <tr><td><code>mode</code> not in the table above</td><td>Unknown capture mode: <em>value</em>. Use region, window, screen, all, repeat, multi, scroll, burst or text.</td></tr>
+          <tr><td><code>delay</code> isn't a whole number from 0 to 60</td><td>The capture delay must be a whole number of seconds from 0 to 60.</td></tr>
+          <tr><td><code>preset</code> not found</td><td>Couldn't find the preset “<em>name</em>”.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 id="examples">Examples</h2>
+    <h3>Terminal</h3>
+<pre><code># Capture an area after 3 seconds
+open "framelet://capture?mode=region&amp;delay=3"
+
+# Open the window list
+open "framelet://capture?mode=window"
+
+# Capture the screen under the pointer with Safari's App Rule
+open "framelet://capture?mode=screen&amp;preset=Safari"
+
+# Recognize Text: select an area, its text goes to the clipboard
+open "framelet://capture?mode=text"</code></pre>
+    <p>Quote the whole link — it contains <code>&amp;</code>.</p>
+
+    <h3>Shortcuts</h3>
+    <ol>
+      <li>Create a new shortcut in the Shortcuts app.</li>
+      <li>Add the “Open URLs” action and enter the link, for example <code>framelet://capture?mode=region&amp;delay=3</code>.</li>
+      <li>In the shortcut's details you can give it a keyboard shortcut or pin it in the menu bar.</li>
+    </ol>
+    <p>In Raycast, Alfred and similar launchers, open the same URL with their “open link” option.</p>
+
+    <h2 id="cli">Command-line flag <code>--capture</code></h2>
+    <p>The Framelet executable accepts <code>--capture &lt;mode&gt;</code>:</p>
+    <pre><code>/Applications/Framelet.app/Contents/MacOS/Framelet --capture region</code></pre>
+    <p>This is the same as opening <code>framelet://capture?mode=region</code>: the process hands the link to macOS and exits immediately, and the running (or newly launched) Framelet takes the capture, so validation and messages are the same as for links. <code>--capture</code> only sets <code>mode</code>; use a link when you need a delay or a preset. Adjust the path to wherever you installed Framelet.</p>
+
+    <h2 id="notes">Requirements</h2>
+    <ul>
+      <li><strong>Screen Recording permission still applies.</strong> Links don't bypass macOS permissions. Without it, Framelet shows its welcome screen; links that arrive while it is open are queued, and if the welcome screen closes without permission they are dropped with “Capturing needs Screen Recording permission”.</li>
+      <li>If Framelet isn't running, macOS launches it first; links that arrive before it has finished starting are queued and then run.</li>
+      <li>While another capture is in progress, a new link doesn't run: “Finish or cancel the current capture”.</li>
+      <li>Only one copy of Framelet on a Mac receives <code>framelet://</code> links. The development build (Framelet Dev) doesn't register them.</li>
+    </ul>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Framelet · This site uses no cookies and no analytics.</span>
+    <nav aria-label="Footer">
+      <a href="index.html">Overview</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="changelog.html">Changelog</a>
+      <a data-link="REPO_URL" href="https://github.com/robeshell/framelet-releases">GitHub</a>
+      <a href="../automation.html" lang="zh-Hans" hreflang="zh-Hans">中文</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

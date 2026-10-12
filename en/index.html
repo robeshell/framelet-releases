@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self'; style-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'">
+<title>Framelet — Screenshots and annotation from the Mac menu bar</title>
+<meta name="description" content="Framelet is a native Mac menu bar screenshot tool: press a shortcut, select, annotate in place, press Return to copy. Your images stay on your Mac. Free; requires macOS 15 or later.">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css">
+<link rel="alternate" hreflang="zh-Hans" href="../index.html">
+<link rel="alternate" hreflang="en" href="index.html">
+<script src="../config.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7V3.5h3.5M13.5 3.5H17V7M17 13v3.5h-3.5M6.5 16.5H3V13" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="10" r="2" fill="currentColor"/></svg>Framelet</a>
+    <nav class="site-nav" aria-label="Site">
+      <a href="index.html" aria-current="page">Overview</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="automation.html">URL automation</a>
+      <a href="changelog.html">Changelog</a>
+      <a class="lang" href="../index.html" lang="zh-Hans" hreflang="zh-Hans">中文</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">
+        <span class="readout">macOS <span class="u">≥</span> 15</span>
+        <span class="readout">Free</span>
+        <span class="readout">On-device</span>
+      </div>
+      <h1>Press a shortcut, select,<br>annotate in place, <kbd>↩</kbd> to copy.</h1>
+      <p class="lede">Framelet is a native Mac screenshot tool that lives in the menu bar. Your capture stays exactly where it was on screen; mark it up, press Return, and the annotated image is on your clipboard.</p>
+      <div class="actions">
+        <a class="btn primary" data-link="DMG_URL" href="https://github.com/robeshell/framelet-releases/releases/latest">Download DMG</a>
+        <a class="btn" data-link="RELEASES_URL" href="https://github.com/robeshell/framelet-releases/releases/latest">All releases</a>
+      </div>
+      <p class="fine">Requires macOS 15 or later. Available in English and Chinese.</p>
+      <figure class="shot">
+        <picture><source srcset="../assets/annotate-en-dark.png" media="(prefers-color-scheme: dark)"><img src="../assets/annotate-en.png" width="1670" height="990" alt="Framelet's annotation layer: the capture stays in its original place on the desktop, which is dimmed around it, with a 1120 × 744 px @2x size readout above it; orange annotations mark it up — a numbered counter, a rectangle, an arrow and a “Too much spacing” label. A single-row toolbar sits below, with Copy on the right."></picture>
+        <figcaption><span class="readout">1120 <span class="u">×</span> 744 <span class="u">px</span> @2x</span>The size readout above the selection, in image pixels. You annotate right where the capture was taken. The sample page is in Chinese.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="flow">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="idx">01</span>
+        <h2 id="flow">One capture, start to finish</h2>
+      </div>
+      <ol class="flow">
+        <li><span class="n" aria-hidden="true">1</span><h3>Press the shortcut</h3><p><kbd>⌃⇧4</kbd> captures an area. Framelet freezes the screen, so what you see is what you get.</p></li>
+        <li><span class="n" aria-hidden="true">2</span><h3>Select</h3><p>A loupe shows pixel coordinates and the color value, with the live size beside it. Release to confirm, nudge with the arrow keys, or press Space to capture a window.</p></li>
+        <li><span class="n" aria-hidden="true">3</span><h3>Annotate in place</h3><p>The toolbar appears next to the selection. Arrow <kbd>A</kbd>, Rectangle <kbd>R</kbd>, Text <kbd>T</kbd>, Counter <kbd>N</kbd>, Redact <kbd>X</kbd> — one letter per tool.</p></li>
+        <li><span class="n" aria-hidden="true">4</span><h3>Copy and done</h3><p><kbd>↩</kbd> or <kbd>⌘C</kbd> copies the annotated image, <kbd>⌘S</kbd> saves, <kbd>Esc</kbd> leaves.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="features">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="idx">02</span>
+        <h2 id="features">What it does</h2>
+      </div>
+      <div class="features">
+        <article class="feature">
+          <h3>Annotate in place</h3>
+          <p>17 tools. Select, Arrow, Rectangle, Text, Pen, Counter, Redact and Crop sit on the toolbar; Ellipse, Line, Highlighter, Pixelate, Blur, Spotlight, Magnifier, Measure and Color Picker are under More. Keys 1–9 pick tools in order; Signal Orange by default, three stroke weights scaled to the capture.</p>
+        </article>
+        <article class="feature">
+          <h3>Recognize Text</h3>
+          <p><kbd>⌃⇧O</kbd>, select an area, and its text and any QR code contents go straight to the clipboard. While annotating you can open the text panel, edit, then copy. Recognition runs on your Mac with Apple's Vision framework.</p>
+        </article>
+        <article class="feature">
+          <h3>Pin</h3>
+          <p>Pin a capture at 1:1 in its original place as a reference. Scroll to zoom, <kbd>⌥</kbd>-scroll for opacity, turn on click-through, double-click to close.</p>
+        </article>
+        <article class="feature">
+          <h3>Quick Access and History</h3>
+          <p>Captures can wait in the bottom-left corner (up to 5) and be dragged straight into other apps. <kbd>⌃⇧H</kbd> opens History, grouped by day and searchable by title and by the text in each image.</p>
+        </article>
+        <article class="feature">
+          <h3>Redact and Backdrop</h3>
+          <p>Redactions are burned in when you copy or save, and the Magnifier can't sample the text underneath. Backdrop adds a background color, padding, rounded corners and a shadow in one step.</p>
+        </article>
+        <article class="feature">
+          <h3>App Rules and automation</h3>
+          <p>Set the after-capture action, format, scale, save location and annotation color per app. <code>framelet://capture</code> links work from Shortcuts — see <a href="automation.html">URL automation</a>.</p>
+        </article>
+      </div>
+      <p class="fine">Two <strong>experimental</strong> features — Scrolling Capture and screen recording (with MP4 / GIF export) — live under More Capture Modes in the menu bar, with settings in Settings › Experimental.</p>
+
+      <div class="shots">
+        <figure class="shot">
+          <picture><source srcset="../assets/history-en-dark.png" media="(prefers-color-scheme: dark)"><img src="../assets/history-en.png" width="2080" height="1440" loading="lazy" alt="The History window: capture thumbnails grouped by day, a search field at the top right, and Annotate Again, Copy, Show in Finder and Move to Trash at the bottom."></picture>
+          <figcaption><span class="readout">⌃⇧H</span>History. Sample captures have Chinese titles.</figcaption>
+        </figure>
+        <figure class="shot">
+          <picture><source srcset="../assets/ocr-en-dark.png" media="(prefers-color-scheme: dark)"><img src="../assets/ocr-en.png" width="1080" height="840" loading="lazy" alt="The Recognize Text panel: three recognized lines of editable text, a count of 39 characters and 3 lines, and a Copy All button."></picture>
+          <figcaption><span class="readout">⇧⌘O</span>Recognize Text panel</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="keys">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="idx">03</span>
+        <h2 id="keys">Default shortcuts</h2>
+        <p>Change any of them in Settings › Shortcuts; they take effect immediately. Global shortcuts need neither Input Monitoring nor Accessibility.</p>
+      </div>
+      <dl class="keys">
+        <div><dt>Capture Area</dt><dd><kbd>⌃⇧4</kbd></dd></div>
+        <div><dt>Capture Full Screen (screen under the pointer)</dt><dd><kbd>⌃⇧3</kbd></dd></div>
+        <div><dt>Capture Window</dt><dd><kbd>⌃⇧W</kbd></dd></div>
+        <div><dt>Repeat Last Area</dt><dd><kbd>⌃⇧5</kbd></dd></div>
+        <div><dt>Recognize Text</dt><dd><kbd>⌃⇧O</kbd></dd></div>
+        <div><dt>Show or hide pins</dt><dd><kbd>⌃⇧P</kbd></dd></div>
+        <div><dt>History</dt><dd><kbd>⌃⇧H</kbd></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="privacy">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="idx">04</span>
+        <h2 id="privacy">It stays on your Mac</h2>
+      </div>
+      <div class="plate">
+        <ul>
+          <li>Captures, annotations, recognized text and history are processed and stored on this Mac and never uploaded.</li>
+          <li>No account. No analytics, no usage data collected.</li>
+          <li>Screen Recording is used only for capturing. Microphone, Accessibility and Input Monitoring are requested only when you turn on the experimental feature that needs them.</li>
+        </ul>
+        <p><a href="privacy.html">Read the full privacy policy</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="download" aria-labelledby="dl">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="idx">05</span>
+        <h2 id="dl">Download</h2>
+      </div>
+      <div class="download">
+        <dl class="spec">
+          <div><dt>System</dt><dd>macOS 15 or later</dd></div>
+          <div><dt>Price</dt><dd>Free</dd></div>
+          <div><dt>Languages</dt><dd>English, Chinese</dd></div>
+          <div><dt>Output</dt><dd class="mono">PNG · JPEG · HEIC · PDF</dd></div>
+          <div><dt>Distribution</dt><dd>DMG on GitHub Releases</dd></div>
+        </dl>
+        <div>
+          <p>Open the DMG and drag Framelet to Applications. On first launch, the welcome screen walks you through allowing Screen Recording in System Settings — that's where macOS puts screenshot permission. After that, Framelet is just an icon in the menu bar.</p>
+          <div class="actions">
+            <a class="btn primary" data-link="DMG_URL" href="https://github.com/robeshell/framelet-releases/releases/latest">Download DMG</a>
+            <a class="btn" data-link="RELEASES_URL" href="https://github.com/robeshell/framelet-releases/releases/latest">All releases</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Framelet · This site uses no cookies and no analytics.</span>
+    <nav aria-label="Footer">
+      <a href="privacy.html">Privacy</a>
+      <a href="automation.html">URL automation</a>
+      <a href="changelog.html">Changelog</a>
+      <a data-link="REPO_URL" href="https://github.com/robeshell/framelet-releases">GitHub</a>
+      <a href="../index.html" lang="zh-Hans" hreflang="zh-Hans">中文</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

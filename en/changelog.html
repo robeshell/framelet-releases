@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self'; style-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'">
+<title>Changelog — Framelet</title>
+<meta name="description" content="What changed for you in each version of Framelet.">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css">
+<link rel="alternate" hreflang="zh-Hans" href="../changelog.html">
+<link rel="alternate" hreflang="en" href="changelog.html">
+<script src="../config.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7V3.5h3.5M13.5 3.5H17V7M17 13v3.5h-3.5M6.5 16.5H3V13" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="10" r="2" fill="currentColor"/></svg>Framelet</a>
+    <nav class="site-nav" aria-label="Site">
+      <a href="index.html">Overview</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="automation.html">URL automation</a>
+      <a href="changelog.html" aria-current="page">Changelog</a>
+      <a class="lang" href="../changelog.html" lang="zh-Hans" hreflang="zh-Hans">中文</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="doc">
+  <div class="wrap narrow">
+    <header class="page-head">
+      <h1>Changelog</h1>
+      <p>What changed for you in each version. Downloads are on <a data-link="RELEASES_URL" href="https://github.com/robeshell/framelet-releases/releases/latest">GitHub Releases</a>.</p>
+    </header>
+
+    <article class="release" aria-labelledby="v040">
+      <h2 id="v040">0.4.0 <span class="readout">Unreleased</span></h2>
+      <p class="muted">A full redesign: a new annotation toolbar, selection layer, Quick Access, History, pins and Settings, plus an English interface.</p>
+
+      <h3>Before you upgrade</h3>
+      <div class="plate">
+        <ul>
+          <li><strong>Shortcuts are migrated once.</strong> Shortcuts still on the old defaults move to the new ones: Capture Area <kbd>⌃⇧2</kbd> → <kbd>⌃⇧4</kbd>, Capture Window <kbd>⌃⇧4</kbd> → <kbd>⌃⇧W</kbd>. Full Screen <kbd>⌃⇧3</kbd>, Repeat Last Area <kbd>⌃⇧5</kbd> and pins <kbd>⌃⇧P</kbd> are unchanged; Recognize Text <kbd>⌃⇧O</kbd> and History <kbd>⌃⇧H</kbd> are new. Shortcuts you changed yourself are kept; if a new default collides with one of them, your existing action keeps its combination and Recognize Text or History adds <kbd>⌥</kbd> to the same key.</li>
+          <li><strong>Scene presets become App Rules.</strong> The default scene is merged into General and Output settings; scenes bound to an app become that app's rule; other scenes are no longer shown but still work via <code>framelet://capture?preset=name</code>.</li>
+          <li><strong>Export scale is now Keep Original or Downscale to 1x.</strong> 50% becomes Downscale to 1x (the same result for Retina captures) and 200% becomes Keep Original.</li>
+          <li><strong>No downgrading.</strong> Records saved by 0.4.0 can't be read by 0.3.x, which quarantines them as damaged. Don't run 0.3.x again after upgrading.</li>
+        </ul>
+      </div>
+
+      <h3>New</h3>
+      <ul>
+        <li>English interface. Choose System, Chinese or English in Settings › General › Language; it takes effect when you reopen Framelet.</li>
+        <li>Recognize Text capture: <kbd>⌃⇧O</kbd> or the Recognize Text menu item. Select an area and its text and QR code contents go straight to the clipboard; you're told if nothing was found. These captures aren't saved to History.</li>
+        <li>Quick Access: captures can wait in the bottom-left corner of the screen under the pointer, up to 5. Hover to annotate, save, pin, copy or close, or drag the image into another app. Each disappears after 8 seconds, but not while the pointer is over it. Results from Multiple Areas, All Screens and Burst that don't open for annotation land here too.</li>
+        <li>History window (<kbd>⌃⇧H</kbd> or History… in the menu): thumbnails grouped by day, searchable by title and by the text in each image. Annotate again, copy, show in Finder, move to Trash, or drag a thumbnail into another app. The menu bar gains Recent Captures, listing the last 8.</li>
+        <li>Backdrop: a popover on the annotation toolbar for background color, padding, rounded corners and shadow.</li>
+        <li>Selection layer: Space switches between area and window; a loupe shows pixel coordinates and the color value; the size is shown live; arrow keys nudge the selection before you release.</li>
+        <li>Measure annotation: saved with the image and editable later, with end ticks and the length in pixels.</li>
+        <li>While annotating, <kbd>⌘P</kbd> pins and <kbd>⇧⌘O</kbd> recognizes text.</li>
+        <li><code>framelet://capture?mode=text</code> starts a Recognize Text capture; see <a href="automation.html#mode">URL automation</a>.</li>
+        <li>Selecting an annotation shows a floating menu: style, edit text, bring to front (<kbd>⇧⌘]</kbd>), duplicate (<kbd>⌘D</kbd>), delete.</li>
+        <li>Resize a selected annotation from any corner or edge, or drag either end of an arrow, line or measurement. The pointer shows the matching resize cursor, <kbd>⇧</kbd> keeps proportions or snaps ends to 45°, and <kbd>⌥</kbd> + arrow keys resize without a mouse.</li>
+        <li>Shortcuts can be cleared: press <kbd>⌫</kbd> while recording. The action shows Not Set and stays available from the menu.</li>
+        <li>Pins: click-through, lock position, and a context menu (copy, save, annotate again, recognize text, zoom, opacity). When a pin has click-through on, the menu bar can turn it off in one click.</li>
+        <li>VoiceOver: every annotation on the canvas reads its type and content and can be selected, deleted and moved; the crop size is readable; switching tools is announced.</li>
+        <li>A fresh area capture can still be moved and resized after it opens for annotation. It is cut again from the frozen screen, never stretched; annotations keep their place on the desktop, the pin position and Repeat Last Area follow, and it can be undone. History and imported images are still adjusted by cropping.</li>
+        <li>With a drawing tool, the selected object (including the one just drawn) can be moved and resized directly; pressing on any other object keeps drawing, so an arrow can start on a text label. Use the Select tool (<kbd>V</kbd>) to adjust other objects. Double-click text to edit it.</li>
+        <li>The crop box can be moved and resized before it is applied. <kbd>⇧</kbd> keeps a moved object on one axis, and snaps arrows, lines and measurements to 45° while drawing.</li>
+        <li>One drag or one text edit is one undo step; selecting, or a change that ends where it started, takes no step and keeps Redo. <kbd>Esc</kbd> cancels a drag or text edit in progress.</li>
+        <li>Faster finishing: double-click the capture to copy and close; <kbd>⌘S</kbd> saves straight to your save location and <kbd>⇧⌘S</kbd> is Save As; the editor has a context menu; Recognize Text in the editor copies right away.</li>
+        <li>Selection: hold <kbd>⌃</kbd> on release to copy without annotating; hold Space while dragging to move the selection; <kbd>⌃⇧W</kbd> opens straight into window mode.</li>
+        <li>Deleting in History no longer asks: it moves to the Trash at once, with Undo (<kbd>⌘Z</kbd>) while the notice shows.</li>
+        <li><kbd>⌘</kbd>-drag the capture out of the editor into any app; in area mode, click a highlighted window to capture it; Space opens Quick Look in History; a new global shortcut, Annotate Last Capture, and holding <kbd>⌥</kbd> in Recent Captures copies instead of opening.</li>
+      </ul>
+
+      <h3>Changed</h3>
+      <ul>
+        <li>A new look throughout: cream and graphite that swap with light and dark appearance; floating controls use Liquid Glass on macOS 26 and a translucent material on macOS 15; redrawn tool and menu bar icons.</li>
+        <li>The annotation toolbar is one row: 8 common tools plus the last tool you used from More. Every tool has a single-letter shortcut and keys 1–9 pick them in order. Color and weight live in the style popover — Signal Orange and medium by default, with weight scaled to the capture. On narrow screens a compact toolbar is used instead of being cut off.</li>
+        <li>New annotation styles: solid arrowheads with a square tail, rounded-square counters, text on a plate, graphite hatching for redactions; every object has a cream keyline so it reads on light and dark backgrounds.</li>
+        <li>The selection layer no longer draws full-screen crosshair lines; only the system crosshair and the loupe remain.</li>
+        <li>Quick Access replaces the preview thumbnail; the After Capture option “Thumbnail” is now “Quick Access”.</li>
+        <li>The menu bar menu is reorganized: Area, Full Screen, Repeat Last Area and Recognize Text first; Window, All Screens, Multiple Areas, Burst and the experimental Scrolling Capture and recording under More Capture Modes. “Reopen Last” moved to the app's File menu.</li>
+        <li>Pins are borderless and appear at 1:1 in the capture's original place, with controls only on hover. Scroll to zoom, <kbd>⌥</kbd>-scroll for opacity, double-click to close.</li>
+        <li>Settings is rebuilt as General, Capture, Output, Shortcuts and App Rules, plus Experimental and About. Recorded shortcuts take effect immediately; conflicts are shown in place and the old combination is kept. App Rules are added with an app picker and can set the After Capture action, format, scale, save location and annotation color for one app; a rule only overrides color, never stroke weight.</li>
+        <li>The welcome screen has three states — permission needed, guidance after a denial, and ready — and <kbd>↩</kbd> runs the main action.</li>
+        <li>Recognize Text panel: editable text, character and line counts, <kbd>⇧⌘C</kbd> to copy all, and QR codes listed separately to open or copy one by one.</li>
+        <li>Recognize Text keeps table layout: columns on a line are separated by tabs, so they paste into separate spreadsheet cells. Turn it off in the panel to use spaces instead.</li>
+        <li>Window list: app icon, title and size per row; <kbd>↑</kbd><kbd>↓</kbd> to choose, <kbd>↩</kbd> to capture, <kbd>Esc</kbd> to cancel.</li>
+        <li>Captures deleted from History (current image and original) go to the Trash and can be recovered until you empty it. History removed by the retention rule is still deleted directly.</li>
+        <li>Faster dragging and saving: dragging an annotation redraws only that object, and saving in a 500-capture library no longer stalls the interface. On quit, images still being written are flushed to disk first; if that fails, Framelet stays open and tells you.</li>
+      </ul>
+
+      <h3>Fixed</h3>
+      <ul>
+        <li>Delayed captures show a countdown you can cancel.</li>
+        <li><kbd>⌘C</kbd> on the annotation canvas copies the annotated image; <kbd>⇧⌘C</kbd> in the text panel copies all text.</li>
+        <li>The Text tool icon no longer reads “Format” on Chinese systems.</li>
+        <li>Every result from Multiple Areas, All Screens and Burst can be found: the last follows your After Capture setting, the rest appear as stacked thumbnails.</li>
+        <li>A failed local save no longer blocks the annotation panel or later captures: retry, save as an image, discard changes, or cancel.</li>
+        <li>Errors are shown as notices that don't interrupt you; completion notices offer Annotate Again and Show in Finder and stay while the pointer is over them.</li>
+        <li>Current-screen captures, thumbnails, pins, the default recording display and completion notices all use the screen under the pointer.</li>
+        <li>Text recognition or a recording that finishes late no longer interrupts a new capture, and stale recognition results don't pop up mid-capture.</li>
+        <li>Closing the annotation panel releases the frozen desktop image, so long sessions use less memory.</li>
+      </ul>
+
+      <h3>Removed</h3>
+      <ul>
+        <li>Old screens with no way to reach them: the gallery, Studio collage, full-page editor, template inspector, reference image manager and the system Share button.</li>
+        <li>The “Issues &amp; Expectations” feedback numbers. Old records that have them still open; the feedback text is no longer shown.</li>
+        <li>Reading the browser's current URL as a capture source, along with its Automation (AppleEvents) permission request.</li>
+      </ul>
+    </article>
+
+    <article class="release" aria-labelledby="v032">
+      <h2 id="v032">0.3.2 <span class="readout">build 6 · <time datetime="2026-10-01">2026-10-01</time></span></h2>
+      <ul>
+        <li>After selection, the annotation layer takes over the same frozen image, so the desktop no longer shows through; selection and annotation use the same dimming.</li>
+        <li>Every area of a multi-area capture is saved and gets the After Capture action; only the last is shown.</li>
+      </ul>
+    </article>
+
+    <article class="release" aria-labelledby="v031">
+      <h2 id="v031">0.3.1 <span class="readout">build 5 · <time datetime="2026-10-01">2026-10-01</time></span></h2>
+      <ul>
+        <li>Fixed Screen Recording permission being lost after each update, which forced you to grant it again.</li>
+      </ul>
+    </article>
+
+    <article class="release" aria-labelledby="v030">
+      <h2 id="v030">0.3.0 <span class="readout">build 4 · <time datetime="2026-10-01">2026-10-01</time></span></h2>
+      <ul>
+        <li>Rebuilt as a menu bar screenshot tool: capture with a shortcut, annotate in a floating panel in place, copy or save, done.</li>
+        <li>A first-launch welcome with Screen Recording guidance; Settings in six categories; completion notices that don't steal focus.</li>
+      </ul>
+    </article>
+
+    <article class="release" aria-labelledby="v021">
+      <h2 id="v021">0.2.1 <span class="readout"><time datetime="2026-10-01">2026-10-01</time></span></h2>
+      <ul>
+        <li>Welcome and permission guidance: Screen Recording is checked live, and “Set Up Later” doesn't count as finished.</li>
+        <li>After capturing, annotation opens in place; <kbd>Enter</kbd> copies and closes. Settings moved to its own window.</li>
+      </ul>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Framelet · This site uses no cookies and no analytics.</span>
+    <nav aria-label="Footer">
+      <a href="index.html">Overview</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="automation.html">URL automation</a>
+      <a data-link="REPO_URL" href="https://github.com/robeshell/framelet-releases">GitHub</a>
+      <a href="../changelog.html" lang="zh-Hans" hreflang="zh-Hans">中文</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
